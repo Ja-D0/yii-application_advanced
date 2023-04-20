@@ -27,7 +27,10 @@ use yii\widgets\ActiveForm;
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Сбросить фильтры',['index'], ['class' => 'btn btn-primary'])?>
 
+
+        <!-- Не работае кнопка -->
         <?= Html::resetButton('Не работает(спросить)', ['class' => 'btn btn-outline-secondary']) ?>
+
     </div>
 
     <?php ActiveForm::end(); ?>
