@@ -3,9 +3,7 @@
 namespace backend\controllers;
 
 use common\models\Category;
-use Yii;
-use yii\data\ActiveDataProvider;
-use yii\filters\AccessControl;
+use backend\models\CategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -22,23 +20,6 @@ class CategoryController extends Controller
     {
         return array_merge(
             parent::behaviors(),
-            [
-                'access' => [
-                    'class' => AccessControl::className(),
-                    'rules' => [
-                        [
-                            'actions' => ['view', 'update', 'delete', 'index', 'create'],
-                            'allow' => true,
-                            'roles' => ['@'],
-                            'matchCallback' => function ($rule, $action) {
-                                $user = Yii::$app->user->identity;
-                                return $user->status === 'Администратор';
-                            }
-                        ],
-
-                    ],
-                ],
-            ],
             [
                 'verbs' => [
                     'class' => VerbFilter::className(),
@@ -57,21 +38,11 @@ class CategoryController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Category::find(),
-            /*
-            'pagination' => [
-                'pageSize' => 50
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC,
-                ]
-            ],
-            */
-        ]);
+        $searchModel = new CategorySearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
