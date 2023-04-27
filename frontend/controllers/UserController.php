@@ -29,11 +29,12 @@ class UserController extends Controller
                       [
                           'actions' => ['view', 'update'],
                           'allow' => true,
-                          'roles' => ['@'],
-                          'matchCallback' => function ($rule, $action) {
-                                $user = Yii::$app->user->identity;
-                                return $user->status === 'Пользователь';
-                          }
+                          //'roles' => ['@'],
+                          //'matchCallback' => function ($rule, $action) {
+                          //      $user = Yii::$app->user->identity;
+                          //      return $user->status === 'Пользователь';
+                          //}
+                          'roles' => ['user', 'admin']
                       ],
 
                   ],

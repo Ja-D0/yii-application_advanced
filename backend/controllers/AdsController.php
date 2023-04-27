@@ -34,11 +34,12 @@ class AdsController extends Controller
                             [
                                 'actions' => ['index', 'view', 'update', 'create' , 'delete'],
                                 'allow' => true,
-                                'roles' => ['@'],
-                                'matchCallback' => function ($rule, $action) {
-                                    $user = Yii::$app->user->identity;
-                                    return $user->status == 'Администратор';
-                                }
+                            //    'roles' => ['@'],
+                            //    'matchCallback' => function ($rule, $action) {
+                            //        $user = Yii::$app->user->identity;
+                            //        return $user->status == 'Администратор';
+                            //    }
+                                'roles' => ['admin']
                             ],
 
                         ],

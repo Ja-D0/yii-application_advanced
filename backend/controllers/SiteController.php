@@ -30,20 +30,22 @@ class SiteController extends Controller
                     [
                         'actions' => ['index'],
                         'allow' => true,
-                        'roles' => ['@'],
-                        'matchCallback' => function ($rule, $action) {
-                            $user = Yii::$app->user->identity;
-                            return $user->status === 'Администратор';
-                        }
+                        //'roles' => ['@'],
+                        //'matchCallback' => function ($rule, $action) {
+                        //    $user = Yii::$app->user->identity;
+                        //    return $user->status === 'Администратор';
+                        //}
+                        'roles' => ['admin']
                     ],
                 [
                     'actions' => ['logout'],
                     'allow' => true,
-                    'roles' => ['@'],
-                    'matchCallback' => function ($rule, $action) {
-                        $user = Yii::$app->user->identity;
-                        return $user->status === 'Пользователь';
-                    }
+                    //'roles' => ['@'],
+                    //'matchCallback' => function ($rule, $action) {
+                    //    $user = Yii::$app->user->identity;
+                    //    return $user->status === 'Пользователь';
+                    //}
+                    'roles' => ['admin' , 'user']
                 ],
                 ],
             ],
