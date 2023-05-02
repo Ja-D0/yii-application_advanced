@@ -5,6 +5,7 @@ namespace common\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\db\QueryInterface;
 
 /**
  * This is the model class for table "{{%ads}}".
@@ -19,6 +20,7 @@ use yii\db\ActiveRecord;
  * @property string|null $description
  *
  * @property Category $category_name
+ * @property Comments $comments
  */
 class Ads extends \yii\db\ActiveRecord
 {
@@ -63,7 +65,7 @@ class Ads extends \yii\db\ActiveRecord
             [['status'], 'string', 'max' => 255],
             [['description'], 'string', 'max' => 256],
             [['category'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['category' => 'id']],
-            [['category_name'], 'safe']
+            [['category_name', 'comments'], 'safe']
         ];
     }
 
@@ -93,5 +95,14 @@ class Ads extends \yii\db\ActiveRecord
     public function getCategory_name()
     {
         return $this->hasOne(Category::class, ['id' => 'category']);
+    }
+
+    /**
+     * Gets query for [[Comments]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getComments(){
+        return $this->hasMany(Comments::class, ['ads' => 'id']);
     }
 }

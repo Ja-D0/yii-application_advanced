@@ -4,9 +4,11 @@ namespace frontend\controllers;
 
 use common\models\Ads;
 use common\models\Category;
+use common\models\Comments;
 use common\models\User;
 use frontend\models\AdsSearch;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -28,14 +30,14 @@ class AdsController extends Controller
                     'class' => AccessControl::className(),
                     'rules' => [
                         [
-                            'actions' => ['index', 'view', 'update', 'create' , 'delete'],
+                            'actions' => ['index', 'view', 'update', 'create', 'delete', 'ads'],
                             'allow' => true,
                             //'roles' => ['@'],
                             //'matchCallback' => function ($rule, $action) {
                             //    $user = Yii::$app->user->identity;
                             //    return in_array($user->status, User::STATUS);
                             //}
-                            'roles' => ['user' , 'admin']
+                            'roles' => ['user', 'admin']
                         ],
 
                     ],
@@ -60,6 +62,16 @@ class AdsController extends Controller
         ]);
     }
 
+    public function actionAds()
+    {
+        $searhModel = new AdsSearch();
+        $dataProvider = $searhModel->searchAll($this->request->get());
+
+        return $this->render('Ads', ['dataProvider' => $dataProvider,
+            'searchModel' => $searhModel]);
+    }
+
+
     /**
      * Displays a single Ads model.
      * @param int $id ID
@@ -68,9 +80,28 @@ class AdsController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        $comment = new Comments();
+
+        if ($this->request->isPost) {
+            if ($comment->load($this->request->post())) {
+                $comment->author = Yii::$app->user->identity->id;
+                $comment->ads = $id;
+                $comment->save();
+            }
+        }
+
+        if ($this->request->get())
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+                'comment' => $comment,
+                'comments' => new ActiveDataProvider(['query' => Comments::find()->where(['ads' => $id]),
+                    'sort' => ['defaultOrder' => [
+                        'created_at' => SORT_DESC,
+                    ]
+                    ]])
+            ]);
+
+        return null;
     }
 
     /**
@@ -131,7 +162,7 @@ class AdsController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect('index');
     }
 
     /**
@@ -149,4 +180,5 @@ class AdsController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
 }

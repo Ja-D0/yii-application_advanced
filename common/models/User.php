@@ -24,6 +24,8 @@ use yii\web\IdentityInterface;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
+ * @property Ads $ads
+ * @property Comments $comments
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -246,17 +248,20 @@ class User extends ActiveRecord implements IdentityInterface
         }else{
             switch ($user->identity->status){
                 case 'Пользователь':{
-                    $menuItems[] = ['label' => 'Мои объявления', 'url' => '/ads/index']
-                    ;
+                    $menuItems[] = ['label' => 'Мои объявления', 'url' => '/ads/index'];
+                    $menuItems[] = ['label' => 'Все объявления', 'url' => '/ads/ads'];
                     return $menuItems;
                 }
                 case 'Администратор':{
                     if (Yii::$app->id == 'app-backend') {
-                        $menuItems[] = ['label' => 'Мои объявления', 'url' => '/ads/index'];
+                        $menuItems[] = ['label' => 'Все объявления', 'url' => '/ads/index'];
                         $menuItems[] = ['label' => 'Категории', 'url' => '/category/index'];
                         $menuItems[] = ['label' => 'Пользователи', 'url' => '/user/index'];
+                        $menuItems[] = ['label' => 'Комментарии', 'url' => '/comments/index'];
+
                     } else {
                         $menuItems[] = ['label' => 'Мои объявления', 'url' => '/ads/index'];
+                        $menuItems[] = ['label' => 'Все объявления', 'url' => '/ads/ads'];
 
                     }
                     return $menuItems;
@@ -269,5 +274,8 @@ class User extends ActiveRecord implements IdentityInterface
     public function getAds()
     {
         return $this->hasMany(Ads::class, ['author' => 'id']);
+    }
+    public function getComments(){
+        return $this->hasMany(Comments::class, ['author' => 'id']);
     }
 }
