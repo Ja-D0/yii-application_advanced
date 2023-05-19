@@ -2,25 +2,18 @@
 
 namespace backend\controllers;
 
-use common\models\Ads;
-use backend\models\AdsSearch;
-use common\models\Category;
 use common\models\Comments;
-use common\models\User;
-use Yii;
-use yii\data\ActiveDataProvider;
+use backend\models\CommentsSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AdsController implements the CRUD actions for Ads model.
+ * CommentsController implements the CRUD actions for Comments model.
  */
-class AdsController extends Controller
+class CommentsController extends Controller
 {
-
-
     /**
      * @inheritDoc
      */
@@ -29,42 +22,41 @@ class AdsController extends Controller
         return array_merge(
             parent::behaviors(),
             [
-
-                    'access' => [
-                        'class' => AccessControl::className(),
-                        'rules' => [
-                            [
-                                'actions' => ['index', 'view', 'update', 'create' , 'delete', 'ads'],
-                                'allow' => true,
-                            //    'roles' => ['@'],
-                            //    'matchCallback' => function ($rule, $action) {
-                            //        $user = Yii::$app->user->identity;
-                            //        return $user->status == 'Администратор';
-                            //    }
-                                'roles' => ['admin']
-                            ],
-
-                        ],
-                    ],
-
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
                         'delete' => ['POST'],
                     ],
                 ],
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'rules' => [
+                        [
+                            'actions' => ['index', 'update', 'create' , 'delete', ],
+                            'allow' => true,
+                            //    'roles' => ['@'],
+                            //    'matchCallback' => function ($rule, $action) {
+                            //        $user = Yii::$app->user->identity;
+                            //        return $user->status == 'Администратор';
+                            //    }
+                            'roles' => ['admin']
+                        ],
+
+                    ],
+                ],
+
             ]
         );
     }
 
     /**
-     * Lists all Ads models.
+     * Lists all Comments models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new AdsSearch();
+        $searchModel = new CommentsSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -73,56 +65,19 @@ class AdsController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Ads model.
-     * @param int $id ID
-     * @return string
-     * @throws NotFoundHttpException if the model cannot be found
-     *
-     */
-    public function actionView($id)
-    {
-        $comment = new Comments();
-
-        if ($this->request->isPost) {
-            if ($comment->load($this->request->post())) {
-                $comment->author = Yii::$app->user->identity->id;
-                $comment->ads = $id;
-                $comment->save();
-            }
-        }
-
-        if ($this->request->get())
-            return $this->render('view', [
-                'model' => $this->findModel($id),
-                'comment' => $comment,
-                'comments' => new ActiveDataProvider(['query' => Comments::find()->where(['ads' => $id]),
-                    'sort' => ['defaultOrder' => [
-                        'created_at' => SORT_DESC,
-                    ]
-                    ]])
-            ]);
-
-        return null;
-    }
-
 
     /**
-     * Creates a new Ads model.
+     * Creates a new Comments model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Ads();
+        $model = new Comments();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post())) {
-                $model->author = Yii::$app->user->identity->nickname;
-
-                if ($model->save()){
-                    return $this->redirect(['view', 'id' => $model->id]);
-                }
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
             $model->loadDefaultValues();
@@ -130,12 +85,11 @@ class AdsController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-            'categories' => Category::find()->all()
         ]);
     }
 
     /**
-     * Updates an existing Ads model.
+     * Updates an existing Comments model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -146,17 +100,16 @@ class AdsController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
             'model' => $model,
-            'categories' => Category::find()->all(),
         ]);
     }
 
     /**
-     * Deletes an existing Ads model.
+     * Deletes an existing Comments model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -170,15 +123,15 @@ class AdsController extends Controller
     }
 
     /**
-     * Finds the Ads model based on its primary key value.
+     * Finds the Comments model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Ads the loaded model
+     * @return Comments the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Ads::findOne(['id' => $id])) !== null) {
+        if (($model = Comments::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

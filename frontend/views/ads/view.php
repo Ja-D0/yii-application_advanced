@@ -7,7 +7,13 @@ use yii\widgets\DetailView;
 /** @var common\models\Ads $model */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Мои объявления', 'url' => ['index']];
+if (strpos(Yii::$app->request->referrer, 'index')) {
+    $param = ['label' => 'Мои объявления', 'url' => ['index']];
+}
+else{
+    $param = ['label' => 'Все объявления', 'url' => ['ads']];
+}
+$this->params['breadcrumbs'][] = $param;
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -39,5 +45,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'updated_at',
         ],
     ]) ?>
+
+    <?= $this->render('../comments/create' , ['model' => $comment , 'ads' => $model->id])?>
+    <?= $this->render('../comments/index', ['dataProvider' => $comments , 'view' => $model->id]) ?>
+
 
 </div>
