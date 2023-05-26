@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
-    <?= $this->render('../comments/create' , ['model' => $comment , 'ads' => $model->id])?>
+    <?= $this->render('../comments/create' , ['model' => $comment])?>
     <?= $this->render('../comments/index', ['dataProvider' => $comments , 'view' => $model->id]) ?>
 
 

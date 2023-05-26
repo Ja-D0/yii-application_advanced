@@ -11,6 +11,7 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -141,6 +142,10 @@ class AdsController extends Controller
     {
         $model = $this->findModel($id);
 
+        if ($model->author != \Yii::$app->user->identity->username){
+            throw new HttpException('403', "Вам не разрешено проводить данное действие");
+        }
+
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -160,7 +165,14 @@ class AdsController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+
+        if ($model->author != \Yii::$app->user->identity->username){
+            throw new HttpException('403', "Вам не разрешено проводить данное действие");
+        }
+
+        $model->delete();
+
 
         return $this->redirect('index');
     }

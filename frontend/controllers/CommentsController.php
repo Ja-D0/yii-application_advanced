@@ -4,8 +4,10 @@ namespace frontend\controllers;
 
 use common\models\Comments;
 use backend\models\CommentsSearch;
+use yii\base\Exception;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -60,6 +62,9 @@ class CommentsController extends Controller
     {
         $model = $this->findModel($id);
         $view = $model->ads0->id;
+        if ($model->author != \Yii::$app->user->identity->id){
+            throw new HttpException('403', "Вам не разрешено проводить данное действие");
+        }
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['../ads/view', 'id' => $view]);
@@ -79,8 +84,13 @@ class CommentsController extends Controller
      */
     public function actionDelete($id)
     {
+
         $model = $this->findModel($id);
         $view = $model->ads0->id;
+        if ($model->author != \Yii::$app->user->identity->id){
+            throw new HttpException('403', "Вам не разрешено проводить данное действие");
+        }
+
         $model->delete();
 
         return $this->redirect(['../ads/view' , 'id' => $view]);

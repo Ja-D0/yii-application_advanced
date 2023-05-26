@@ -1,0 +1,55 @@
+2023-05-26 14:03:01 [192.168.1.9][-][-][warning][yii\debug\Module::checkAccess] Access to debugger is denied due to IP address restriction. The requesting IP address is 192.168.1.9
+2023-05-26 14:03:01 [192.168.1.9][-][-][info][application] $_GET = [
+    'id' => '32'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    '_identity-frontend' => 'ac8d11bccdecd582fa25b7697fd3bc41cc35c8174f0462278aad8b52014d6de0a:2:{i:0;s:18:\"_identity-frontend\";i:1;s:46:\"[4,\"TiIunT6J5fCfUWpAzRFMyizXX0fzvydE\",2592000]\";}'
+    '_identity-backend' => '3fa645bb4704740e1ed23fbb9daa46b9da527604b26251ebefb4f7a2640c6342a:2:{i:0;s:17:\"_identity-backend\";i:1;s:46:\"[4,\"TiIunT6J5fCfUWpAzRFMyizXX0fzvydE\",2592000]\";}'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => '192.168.1.9'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 YaBrowser/23.3.4.605 Yowser/2.5 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'ru,en;q=0.9'
+    'HTTP_COOKIE' => '_identity-frontend=ac8d11bccdecd582fa25b7697fd3bc41cc35c8174f0462278aad8b52014d6de0a%3A2%3A%7Bi%3A0%3Bs%3A18%3A%22_identity-frontend%22%3Bi%3A1%3Bs%3A46%3A%22%5B4%2C%22TiIunT6J5fCfUWpAzRFMyizXX0fzvydE%22%2C2592000%5D%22%3B%7D; _identity-backend=3fa645bb4704740e1ed23fbb9daa46b9da527604b26251ebefb4f7a2640c6342a%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B4%2C%22TiIunT6J5fCfUWpAzRFMyizXX0fzvydE%22%2C2592000%5D%22%3B%7D'
+    'PATH' => 'C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files\\Common Files\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\Git\\cmd;C:\\Users\\denis\\PhpstormProjects\\PHP;C:\\ProgramData\\ComposerSetup\\bin;C:\\Users\\denis\\PhpstormProjects\\Node\\;C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\;C:\\Users\\denis\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Program Files\\JetBrains\\PhpStorm 2023.1\\bin;C:\\Users\\denis\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Program Files\\JetBrains\\IntelliJ IDEA Community Edition 2023.1\\bin;C:\\Users\\denis\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.54 (Win64) PHP/7.4.33'
+    'SERVER_NAME' => '192.168.1.9'
+    'SERVER_ADDR' => '192.168.1.9'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.1.9'
+    'DOCUMENT_ROOT' => 'C:/Users/denis/PhpstormProjects/yii-application/api/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/Users/denis/PhpstormProjects/yii-application/api/web'
+    'SERVER_ADMIN' => 'admin@example.com'
+    'SCRIPT_FILENAME' => 'C:/Users/denis/PhpstormProjects/yii-application/api/web/index.php'
+    'REMOTE_PORT' => '59288'
+    'REDIRECT_URL' => '/api/post'
+    'REDIRECT_QUERY_STRING' => 'id=32'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'id=32'
+    'REQUEST_URI' => '/api/post?id=32'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1685109781.3829
+    'REQUEST_TIME' => 1685109781
+]

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru-RU" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Signup</title>
+    <meta name="csrf-param" content="_csrf-frontend">
+<meta name="csrf-token" content="Pciho7pXERMvveJmRP2GW0z58LhLSd4fBNA67Ip4Vhl4_Nbr925BSUr4rwc2rNcBJ5fGjXIN7ylNk06vuUAOIA==">
+
+<link href="/assets/b9b0d67f/dist/css/bootstrap.css" rel="stylesheet">
+<link href="/css/site.css" rel="stylesheet"></head>
+<body class="d-flex flex-column h-100">
+
+<header>
+    <nav id="w16" class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<div class="container">
+<a class="navbar-brand" href="/index-test.php">My Application</a>
+<button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#w16-collapse" aria-controls="w16-collapse" aria-expanded="false" aria-label="Переключить навигацию"><span class="navbar-toggler-icon"></span></button>
+<div id="w16-collapse" class="collapse navbar-collapse">
+<ul id="w17" class="navbar-nav me-auto mb-2 mb-md-0 nav"><li class="nav-item"><a class="nav-link" href="/index-test.php/site/index">Главная</a></li>
+<li class="nav-item"><a class="nav-link" href="/index-test.php/site/about">About</a></li>
+<li class="nav-item"><a class="nav-link" href="/index-test.php/site/contact">Contact</a></li>
+<li class="nav-item"><a class="nav-link" href="/site/signup">Регистрация</a></li></ul><div class="d-flex"><a class="btn btn-link login text-decoration-none" href="/index-test.php/site/login">Login</a></div></div>
+</div>
+</nav></header>
+
+<main role="main" class="flex-shrink-0">
+    <div class="container">
+        <nav aria-label="breadcrumb"><ol id="w18" class="breadcrumb"><li class="breadcrumb-item"><a href="/index-test.php">Главная</a></li>
+<li class="breadcrumb-item active" aria-current="page">Signup</li>
+<li class="breadcrumb-item active" aria-current="page">Signup</li>
+</ol></nav>                <div class="site-signup">
+    <h1>Signup</h1>
+
+    <p>Please fill out the following fields to signup:</p>
+
+    <div class="row">
+        <div class="col-lg-5">
+            <form id="form-signup" action="/index-test.php/site/signup" method="post">
+<input type="hidden" name="_csrf-frontend" value="Pciho7pXERMvveJmRP2GW0z58LhLSd4fBNA67Ip4Vhl4_Nbr925BSUr4rwc2rNcBJ5fGjXIN7ylNk06vuUAOIA==">
+                <div class="mb-3 field-signupform-username required">
+<label class="form-label" for="signupform-username">Username</label>
+<input type="text" id="signupform-username" class="form-control is-invalid" name="SignupForm[username]" value="" autofocus aria-required="true" aria-invalid="true">
+
+<div class="invalid-feedback">Необходимо заполнить «Username».</div>
+</div>
+                <div class="mb-3 field-signupform-email required">
+<label class="form-label" for="signupform-email">Email</label>
+<input type="text" id="signupform-email" class="form-control is-invalid" name="SignupForm[email]" value="" aria-required="true" aria-invalid="true">
+
+<div class="invalid-feedback">Необходимо заполнить «Email».</div>
+</div>
+                <div class="mb-3 field-signupform-password required">
+<label class="form-label" for="signupform-password">Password</label>
+<input type="password" id="signupform-password" class="form-control is-invalid" name="SignupForm[password]" value="" aria-required="true" aria-invalid="true">
+
+<div class="invalid-feedback">Необходимо заполнить «Password».</div>
+</div>
+                <div class="mb-3 field-signupform-status">
+<label class="form-label" for="signupform-status">Status</label>
+<select id="signupform-status" class="form-select" name="SignupForm[status]">
+<option value="0" selected>Пользователь</option>
+<option value="1">Администратор</option>
+</select>
+
+<div class="invalid-feedback"></div>
+</div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" name="signup-button">Signup</button>                </div>
+
+            </form>        </div>
+    </div>
+</div>
+    </div>
+</main>
+
+<footer class="footer mt-auto py-3 text-muted">
+    <div class="container">
+        <p class="float-start">&copy; My Application 2023</p>
+        <p class="float-end">Работает на <a href="https://www.yiiframework.com/" rel="external">Yii Framework</a></p>
+    </div>
+</footer>
+
+<script src="/assets/86d435b2/jquery.js"></script>
+<script src="/assets/b0bd2269/yii.js"></script>
+<script src="/assets/b0bd2269/yii.validation.js"></script>
+<script src="/assets/b0bd2269/yii.activeForm.js"></script>
+<script src="/assets/b9b0d67f/dist/js/bootstrap.bundle.js"></script>
+<script>jQuery(function ($) {
+jQuery('#form-signup').yiiActiveForm([{"id":"signupform-username","name":"username","container":".field-signupform-username","input":"#signupform-username","error":".invalid-feedback","validate":function (attribute, value, messages, deferred, $form) {value = yii.validation.trim($form, attribute, {"skipOnArray":true,"skipOnEmpty":false,"chars":false}, value);yii.validation.required(value, messages, {"message":"Необходимо заполнить «Username»."});yii.validation.string(value, messages, {"message":"Значение «Username» должно быть строкой.","min":2,"tooShort":"Значение «Username» должно содержать минимум 2 символа.","max":255,"tooLong":"Значение «Username» должно содержать максимум 255 символа.","skipOnEmpty":1});}},{"id":"signupform-email","name":"email","container":".field-signupform-email","input":"#signupform-email","error":".invalid-feedback","validate":function (attribute, value, messages, deferred, $form) {value = yii.validation.trim($form, attribute, {"skipOnArray":true,"skipOnEmpty":false,"chars":false}, value);yii.validation.required(value, messages, {"message":"Необходимо заполнить «Email»."});yii.validation.email(value, messages, {"pattern":/^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$/,"fullPattern":/^[^@]*<[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?>$/,"allowName":false,"message":"Значение «Email» не является правильным email адресом.","enableIDN":false,"skipOnEmpty":1});yii.validation.string(value, messages, {"message":"Значение «Email» должно быть строкой.","max":255,"tooLong":"Значение «Email» должно содержать максимум 255 символа.","skipOnEmpty":1});}},{"id":"signupform-password","name":"password","container":".field-signupform-password","input":"#signupform-password","error":".invalid-feedback","validate":function (attribute, value, messages, deferred, $form) {yii.validation.required(value, messages, {"message":"Необходимо заполнить «Password»."});yii.validation.string(value, messages, {"message":"Значение «Password» должно быть строкой.","min":8,"tooShort":"Значение «Password» должно содержать минимум 8 символа.","skipOnEmpty":1});}},{"id":"signupform-status","name":"status","container":".field-signupform-status","input":"#signupform-status","error":".invalid-feedback","validate":function (attribute, value, messages, deferred, $form) {yii.validation.string(value, messages, {"message":"Значение «Status» должно быть строкой.","skipOnEmpty":1});}}], {"errorSummary":".alert.alert-danger","errorCssClass":"is-invalid","successCssClass":"is-valid","validationStateOn":"input"});
+});</script></body>
+</html>
