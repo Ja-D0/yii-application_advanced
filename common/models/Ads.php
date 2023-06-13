@@ -12,7 +12,7 @@ use yii\db\QueryInterface;
  *
  * @property int $id
  * @property string $title
- * @property int|null $author
+ * @property string|null $author
  * @property int|null $category
  * @property string $status
  * @property string $created_at
